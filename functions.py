@@ -1,7 +1,7 @@
 import time
 
 
-def slowPrint(text, delay):
+def slowP(text, delay):
     """
    Makes the strings slower by a certain amount of time
     """
