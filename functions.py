@@ -7,3 +7,8 @@ def slow_p(text, delay):
     """
     print(text)
     time.sleep(delay)
+
+
+# Global variable for weapon and key
+weapon = False
+key = False
