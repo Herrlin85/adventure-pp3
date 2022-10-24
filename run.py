@@ -1,8 +1,13 @@
+
 """
 import slow print from functions.py
 """
 from functions import slow_p
 from functions import weapon, key
+
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
 
 
 def welcome():
@@ -20,7 +25,7 @@ def get_name():
     """
     Ask for the user's name and validate it to not be empty
     """
-    #sets the name to global
+    # sets the name to global
     global name
     name = input('Please enter your name: ')
     if name != '':
@@ -50,17 +55,18 @@ def main_room():
     answer = ""
     while answer not in directions:
         slow_p('Which door do you choose? (left/forward/right/backward)', 1)
+        # Makes the input in lower case and get rid of whitespaces
         answer = input('>> ').lower().strip()
         # The room to the left to collect the weapon
         if answer == 'left':
             slow_p('You are slowly walking towards the left door', 2)
             slow_p('You reach the door and carefully walk inside \n', 2)
-            leftRoom()
-        # The middle room to finish the game
+            left_room()
+        # The middle room to finish the game if key is collected
         elif answer == 'forward':
-            # If the key is collected the game is finished 
             if key:
                 slow_p('Congratulations, you managed to wake up', 2)
+                play_again()
             else:
                 slow_p('You decide to take the middle door', 2)
                 slow_p('The door is locked', 2)
@@ -69,8 +75,8 @@ def main_room():
         # The room to the right to collect the key
         elif answer == 'right':
             slow_p('You are slowly walking towards the door on your right', 2)
-            slow_p('You reach the handle and open the door', 2)
-            rightRoom()
+            slow_p('You reach the handle and open the door \n', 2)
+            right_room()
         # A dead end
         elif answer == 'backward':
             slow_p('You open the door and just see a concret wall', 2)
@@ -79,15 +85,16 @@ def main_room():
             print('Please choose a valid path')
 
 
-def leftRoom():
+def left_room():
     """
     Takes the user to the left room and gives the option
-    to walk up to a cabinet.
+    to walk up to a cabinet and collect the weapon.
     """
     slow_p("You've entered a small room with dampen lights", 2)
     slow_p('Across the room from where you are standing', 2)
     slow_p('there is an old decayed cabinet.', 2)
     slow_p('Do you walk up to the cabinet? (Yes / No)', 1)
+    # Makes the input in lower case and get rid of whitespaces
     cabinet = input('>> ').lower().strip()
     global weapon
     if cabinet == 'y' or cabinet == 'yes':
@@ -95,6 +102,7 @@ def leftRoom():
         slow_p('Inside is a big knife laying on a shelf', 2)
         slow_p('The knife might come in handy', 2)
         slow_p('so you deicde to pick it up and head back to the main room', 2)
+        # Sets the global weapon to True
         weapon = True
         main_room()
     else:
@@ -102,7 +110,7 @@ def leftRoom():
         main_room()
 
 
-def rightRoom():
+def right_room():
     """
     The user can collect the key from this room and gets
     multiple choices which leads to either the user dies, goes
@@ -117,26 +125,37 @@ def rightRoom():
     slow_p('comes from, a shiny object caught your eyes', 2)
     slow_p('there is something laying on a table in front of you', 2)
     slow_p('Do you want to go to the table? (Yes / No)', 1)
+    # Makes the input in lower case and get rid of whitespaces
     table = input('>> ').lower().strip()
     global key
-    global weapon
     if table == 'y' or table == 'yes':
         slow_p('When you were just about to take a step', 2)
         slow_p('towards the table', 2)
         slow_p('a big and scary monster dropped from the ceiling', 2)
         slow_p('what are you going to do? (Fight / Flee)', 1)
+        # Makes the input in lower case and get rid of whitespaces
         encounter = input('>> ').lower().strip()
         if encounter == 'fight':
             if weapon:
                 slow_p('You took out your knife and slayed the big monster', 2)
                 slow_p('the object on the table is a key', 2)
                 slow_p('you pick up the key and head back to the main room', 2)
+                # Change the global key to True
                 key = True
                 main_room()
             else:
                 slow_p('You have nothing to attack the monster with', 2)
                 slow_p('The monster shredded you too pieces', 2)
-                slow_p('YOU ARE DEAD', 2)
+                
+                slow_p(Fore.RED + '''
+                _____    ______              _____  
+                |  __ \  |  ____|     /\     |  __ \ 
+                | |  | | | |__       /  \    | |  | |
+                | |  | | |  __|     / /\ \   | |  | |
+                | |__| | | |____   / ____ \  | |__| |
+                |_____/  |______| /_/    \_\ |_____/ 
+                                
+                ''', 2)
                 play_again()
         else:
             slow_p("HELL NO, i'm not fighting that", 2)
@@ -152,12 +171,14 @@ def play_again():
     Ask if the user want another go
     """
     slow_p('Do you want to play again? (Yes / No)', 2)
+    # Makes the input in lower case and get rid of whitespaces
     answer = input('>> ').lower().strip()
     if answer == 'y' or answer == 'yes':
         get_name()
     else:
         slow_p(f'Maybe another time {name}', 1)
         slow_p('Hope to see you again', 1)
+        # Ends the game
         exit()
 
 
