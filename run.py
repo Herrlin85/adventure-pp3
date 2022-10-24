@@ -27,7 +27,7 @@ def get_name():
     """
     # sets the name to global
     global name
-    name = input('Please enter your name: ')
+    name = input('Please enter your name:\n')
     if name != '':
         print(f'Good luck, {name}.\n')
         intro()
@@ -56,7 +56,7 @@ def main_room():
     while answer not in directions:
         slow_p('Which door do you choose? (left/forward/right/backward)', 1)
         # Makes the input in lower case and get rid of whitespaces
-        answer = input('>> ').lower().strip()
+        answer = input('>> \n').lower().strip()
         # The room to the left to collect the weapon
         if answer == 'left':
             slow_p('You are slowly walking towards the left door', 2)
@@ -95,7 +95,7 @@ def left_room():
     slow_p('there is an old decayed cabinet.', 2)
     slow_p('Do you walk up to the cabinet? (Yes / No)', 1)
     # Makes the input in lower case and get rid of whitespaces
-    cabinet = input('>> ').lower().strip()
+    cabinet = input('>> \n').lower().strip()
     global weapon
     if cabinet == 'y' or cabinet == 'yes':
         slow_p('You open up the cabinet', 2)
@@ -126,7 +126,7 @@ def right_room():
     slow_p('there is something laying on a table in front of you', 2)
     slow_p('Do you want to go to the table? (Yes / No)', 1)
     # Makes the input in lower case and get rid of whitespaces
-    table = input('>> ').lower().strip()
+    table = input('>> \n').lower().strip()
     global key
     if table == 'y' or table == 'yes':
         slow_p('When you were just about to take a step', 2)
@@ -134,7 +134,7 @@ def right_room():
         slow_p('a big and scary monster dropped from the ceiling', 2)
         slow_p('what are you going to do? (Fight / Flee)', 1)
         # Makes the input in lower case and get rid of whitespaces
-        encounter = input('>> ').lower().strip()
+        encounter = input('>> \n').lower().strip()
         if encounter == 'fight':
             if weapon:
                 slow_p('You took out your knife and slayed the big monster', 2)
@@ -172,7 +172,7 @@ def play_again():
     """
     slow_p('Do you want to play again? (Yes / No)', 2)
     # Makes the input in lower case and get rid of whitespaces
-    answer = input('>> ').lower().strip()
+    answer = input('>> \n').lower().strip()
     if answer == 'y' or answer == 'yes':
         get_name()
     else:
