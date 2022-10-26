@@ -17,12 +17,16 @@ def welcome():
     """
     slow_p('Welcome to the Adventure Game:', 2)
     slow_p(Fore.RED + '''
+                      __ __|  |
+                        |    __ \    _ \
+                        |    | | |   __/
+                       _|   _| |_| \___|
 
- __ __|  |                 \  | _)         |      |                                
-    |    __ \    _ \        \ |  |   _` |  __ \   __|  __ `__ \    _` |   __|  _ \ 
-    |    | | |   __/      |\  |  |  (   |  | | |  |    |   |   |  (   |  |     __/ 
-   _|   _| |_| \___|     _| \_| _| \__, | _| |_| \__| _|  _|  _| \__,_| _|   \___| 
-                                   |___/                                            
+  \  |  _)           |       |                                       | 
+   \ |   |    _` |   __ \    __|   __ `__ \     _` |    __|    _ \   |
+ |\  |   |   (   |   | | |   |     |   |   |   (   |   |       __/  _|
+_| \_|  _|  \__, |  _| |_|  \__|  _|  _|  _|  \__,_|  _|     \___|  _)
+            |___/                                                 
 ''', 2)
     slow_p('As you fall asleep, you enter a terrible nightmare', 2)
     slow_p('To be able wake up, you need to find the key', 2)
@@ -197,7 +201,7 @@ def play_again():
     """
     slow_p('Do you want to play again? (Yes / No)', 2)
     # Makes the input in lower case and get rid of whitespaces
-    answer = input('\n>>').lower().strip()
+    answer = input('>>\n').lower().strip()
     if answer == 'y' or answer == 'yes':
         get_name()
     else:
