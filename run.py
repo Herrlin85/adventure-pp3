@@ -14,7 +14,15 @@ def welcome():
     """
     Welcome message and description for the user
     """
-    slow_p('Welcome to the Adventure Game: The Nightmare!', 2)
+    slow_p('Welcome to the Adventure Game:', 2)
+    slow_p(Fore.RED + '''
+
+ __ __|  |                 \  | _)         |      |                                
+    |    __ \    _ \        \ |  |   _` |  __ \   __|  __ `__ \    _` |   __|  _ \ 
+    |    | | |   __/      |\  |  |  (   |  | | |  |    |   |   |  (   |  |     __/ 
+   _|   _| |_| \___|     _| \_| _| \__, | _| |_| \__| _|  _|  _| \__,_| _|   \___| 
+                                   |___/                                            
+''', 2)
     slow_p('As you fall asleep, you enter a terrible nightmare', 2)
     slow_p('To be able wake up, you need to find the key', 2)
     slow_p('There are different paths to choose from to find your way out', 2)
@@ -65,7 +73,16 @@ def main_room():
         # The middle room to finish the game if key is collected
         elif answer == 'forward':
             if key:
-                slow_p('Congratulations, you managed to wake up', 2)
+                slow_p('You managed to escape your nightmare', 2)
+                slow_p(Fore.GREEN + '''
+                     ______                                                
+                    / _____)                                    _          
+                   | /        ___   ____    ____   ____   ____ | |_    ___ 
+                   | |       / _ \ |  _ \  / _  | / ___) / _  ||  _)  /___)
+                   | \_____ | |_| || | | |( ( | || |    ( ( | || |__ |___ |
+                    \______) \___/ |_| |_| \_|| ||_|     \_||_| \___)(___/ 
+                                          (_____|                          
+                ''', 2)
                 play_again()
             else:
                 slow_p('You decide to take the middle door', 2)
@@ -148,13 +165,17 @@ def right_room():
                 slow_p('The monster shredded you too pieces', 2)
                 
                 slow_p(Fore.RED + '''
-                _____    ______              _____  
-                |  __ \  |  ____|     /\     |  __ \ 
-                | |  | | | |__       /  \    | |  | |
-                | |  | | |  __|     / /\ \   | |  | |
-                | |__| | | |____   / ____ \  | |__| |
-                |_____/  |______| /_/    \_\ |_____/ 
-                                
+                
+                            ▓█████▄ ▓█████  ▄▄▄      ▓█████▄ 
+                            ▒██▀ ██▌▓█   ▀ ▒████▄    ▒██▀ ██▌
+                            ░██   █▌▒███   ▒██  ▀█▄  ░██   █▌
+                            ░▓█▄   ▌▒▓█  ▄ ░██▄▄▄▄██ ░▓█▄   ▌
+                            ░▒████▓ ░▒████▒ ▓█   ▓██▒░▒████▓ 
+                            ▒▒▓  ▒ ░░ ▒░ ░ ▒▒   ▓▒█░ ▒▒▓  ▒ 
+                            ░ ▒  ▒  ░ ░  ░  ▒   ▒▒ ░ ░ ▒  ▒ 
+                            ░ ░  ░    ░     ░   ▒    ░ ░  ░ 
+                            ░       ░  ░      ░  ░   ░    
+                            ░                        ░      
                 ''', 2)
                 play_again()
         else:
