@@ -12,19 +12,6 @@ import os
 import colorama
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
-# Makes the title red and bright
-print(Fore.RED + Style.BRIGHT + r'''
-
-                    ________        _  ___      __  __                   
-                   /_  __/ / ___   / |/ (____ _/ / / /___ _ ___ ________ 
-                    / / / _ / -_) /    / / _ `/ _ / __/  ' / _ `/ __/ -_)
-                   /_/ /_//_\__/ /_/|_/_/\_, /_//_\__/_/_/_\_,_/_/  \__/ 
-                                        /___/                            
-                  
-
-
-''')
-
 
 def welcome():
     """
