@@ -1,6 +1,9 @@
 
 """
 import slow print from functions.py
+import colorama for styling purposes
+on ASCII Art and os to be able to 
+clear terminal inside code
 """
 from functions import slow_p
 from functions import weapon, key
@@ -9,26 +12,25 @@ import os
 import colorama
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
+# Makes the title red and bright
+print(Fore.RED + Style.BRIGHT + r'''
+
+                    ________        _  ___      __  __                   
+                   /_  __/ / ___   / |/ (____ _/ / / /___ _ ___ ________ 
+                    / / / _ / -_) /    / / _ `/ _ / __/  ' / _ `/ __/ -_)
+                   /_/ /_//_\__/ /_/|_/_/\_, /_//_\__/_/_/_\_,_/_/  \__/ 
+                                        /___/                            
+                  
+
+
+''')
 
 
 def welcome():
     """
     Welcome message and description for the user
     """
-    slow_p('Welcome to the Adventure Game:', 2)
-    slow_p(Fore.RED + '''
-                    
- __ __|   |  |   __|   
-    |     __ |   _|       
-   _|    _| _|  ___|
-   
-  \ |  _ _|    __|   |  |  __ __|    \  |     \     _ \   __|   |
- .  |    |    (_ |   __ |     |     |\/ |    _ \      /   _|   _|
-_|\_|  ___|  \___|  _| _|    _|    _|  _|  _/  _\  _|_\  ___|  _)
-                    
-
-
-''', 2)
+    slow_p('Welcome to the Adventure Game: The Nightmare!', 1)
     slow_p('As you fall asleep, you enter a terrible nightmare', 2)
     slow_p('To be able wake up, you need to find the key', 2)
     slow_p('There are different paths to choose from to find your way out', 2)
@@ -38,16 +40,19 @@ _|\_|  ___|  \___|  _| _|    _|    _|  _|  _/  _\  _|_\  ___|  _)
 def get_name():
     """
     Ask for the user's name and validate it to not be empty
+    and only letters
     """
-    # sets the name to global
-    global name
-    name = input('\nPlease enter your name:')
-    if name != '':
-        print(f'Good luck, {name}.\n')
-        intro()
-    else:
-        print("Don't you have a name?")
-        get_name()
+    global player_name
+    player_name = ""
+    while True:
+        player_name = input('\nPlease enter your name:').capitalize()
+        if not player_name.isalpha():
+            print('Use only letters please')
+            continue
+        else:
+            print(f'Good luck, {player_name}.\n')
+            break
+    intro()
     
 
 def intro():
@@ -69,26 +74,27 @@ def main_room():
     answer = ""
     while answer not in directions:
         slow_p('Which door do you choose? (left/forward/right/backward)', 1)
-        # Makes the input in lower case and get rid of whitespaces
+        # Makes the input in lower case and get rid of whitespaces if any
         answer = input('\n>>').lower().strip()
         # Clears the terminal for better user experience
         os.system('clear')
         # The room to the left to collect the weapon
         if answer == 'left':
-            slow_p('You are slowly walking towards the left door', 2)
+            slow_p('You have a good feeling about the left door', 2)
             slow_p('You reach the door and carefully walk inside \n', 2)
             left_room()
         # The middle room to finish the game if key is collected
         elif answer == 'forward':
             if key:
                 slow_p('You managed to escape your nightmare', 2)
-                slow_p(Fore.GREEN + '''
+                # Makes the ASCII text red and bright
+                slow_p(Fore.RED + Style.BRIGHT + '''
      ______                                                
     / _____)                                    _          
     | /        ___   ____    ____   ____   ____ | |_    ___ 
     | |       / _ \ |  _ \  / _  | / ___) / _  ||  _)  /___)
     | \_____ | |_| || | | |( ( | || |    ( ( | || |__ |___ |
-    \______) \___/ |_| |_| \_|| ||_|     \_||_| \___)(___/ 
+     \______) \___/ |_| |_| \_|| ||_|     \_||_| \___)(___/ 
                            (_____|                          
                 ''', 2)
                 play_again()
@@ -99,7 +105,7 @@ def main_room():
                 main_room()
         # The room to the right to collect the key
         elif answer == 'right':
-            slow_p('You are slowly walking towards the door on your right', 2)
+            slow_p('You slowly walk towards the door to your right', 2)
             slow_p('You reach the handle and open the door \n', 2)
             right_room()
         # A dead end
@@ -121,7 +127,7 @@ def left_room():
     slow_p('there is an old decayed cabinet.', 2)
     slow_p('Do you walk up to the cabinet? (Yes / No)', 1)
 
-    # Makes the input in lower case and get rid of whitespaces
+    # Makes the input in lower case and get rid of whitespaces if any
     cabinet = input('\n>>').lower().strip()
     if cabinet == 'y' or cabinet == 'yes':
         slow_p('You open up the cabinet', 2)
@@ -144,36 +150,48 @@ def right_room():
     To get the key the user needs to collect the weapon and slay 
     the monster.
     """
+    
     global key
     slow_p('You step inside the room', 2)
     slow_p('and you can hear a strange sound', 2)
     slow_p('that makes you skin crawl', 2)
     slow_p('While trying to locate where the sound', 2)
-    slow_p('comes from, a shiny object caught your eyes', 2)
+    slow_p('is coming from, a shiny object caught your eyes', 2)
     slow_p('there is something laying on a table in front of you', 2)
     slow_p('Do you want to go to the table? (Yes / No)', 1)
-    # Makes the input in lower case and get rid of whitespaces
+    # Makes the input in lower case and get rid of whitespaces if any
     table = input('\n>>').lower().strip()
     if table == 'y' or table == 'yes':
-        slow_p('When you were just about to take a step', 2)
-        slow_p('towards the table', 2)
-        slow_p('a big and scary monster dropped from the ceiling', 2)
+        slow_p('When you where just about to take a step', 2)
+        slow_p('towards the table, you hear that sound again', 2)
+        slow_p('and a big and scary monster dropped from the ceiling', 2)
         slow_p('what are you going to do? (Fight / Flee)', 1)
-        # Makes the input in lower case and get rid of whitespaces
+        # Makes the input in lower case and get rid of whitespaces if any
         encounter = input('\n>>').lower().strip()
         if encounter == 'fight':
             if weapon:
                 slow_p('You took out your knife and slayed the big monster', 2)
-                slow_p('the object on the table is a key', 2)
-                slow_p('you pick up the key and head back to the main room', 2)
-                # Change the global key to True
-                key = True
-                main_room()
+                slow_p('The sound that made your skin crawl made sence now', 2)
+                slow_p('You head over to the table', 2)
+                slow_p('to have a look at the shiny object on the table', 2)
+                slow_p("It's a long metal object with a cross-shaped end", 2)
+                slow_p('What do you want to do with it? (Take / Leave)', 1)
+                # Makes the input in lower case and get rid of whitespaces
+                metal_object = input('\n>>').lower().strip()
+                if metal_object == 'take':
+                    slow_p('You put the metal object in your pocket', 2)
+                    slow_p('and head back to the main room', 2)
+                    # Change the global key to True
+                    key = True
+                    main_room()
+                else:
+                    slow_p('Seems useless, you dedice to leave it be', 2)
+                    main_room()
             else:
                 slow_p('You have nothing to attack the monster with', 2)
                 slow_p('The monster shredded you too pieces', 2)
-                
-                slow_p(Fore.RED + '''
+                # Make the ASCII red and bright
+                slow_p(Fore.RED + Style.BRIGHT + '''
                 
             ▓█████▄ ▓█████  ▄▄▄      ▓█████▄ 
             ▒██▀ ██▌▓█   ▀ ▒████▄    ▒██▀ ██▌
@@ -202,11 +220,13 @@ def play_again():
     """
     slow_p('Do you want to play again? (Yes / No)', 2)
     # Makes the input in lower case and get rid of whitespaces
-    answer = input('>>\n').lower().strip()
+    answer = input('\n>>').lower().strip()
     if answer == 'y' or answer == 'yes':
+        # Clears the terminal for better user experience
+        os.system('clear')
         get_name()
     else:
-        slow_p(f'Maybe another time {name}', 1)
+        slow_p(f'Maybe another time {player_name}', 1)
         slow_p('Hope to see you again', 1)
         # Ends the game
         exit()
